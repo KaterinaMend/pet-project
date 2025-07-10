@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Rick And Morty App</string>
+    <string name="image_description">Starting logo image</string>
+    <string name="get_started">Get Started</string>
+    <string name="search_placeholder">Search characters</string>
+    <string name="character">Character</string>
+    <string name="checkout">Checkout</string>
+</resources>
