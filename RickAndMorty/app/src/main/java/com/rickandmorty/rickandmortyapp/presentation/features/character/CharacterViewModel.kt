@@ -2,7 +2,6 @@ package com.rickandmorty.rickandmortyapp.presentation.features.character
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.rickandmorty.rickandmortyapp.domain.usecases.character.GetCharacterItemsUseCase
 import com.rickandmorty.rickandmortyapp.domain.models.CharacterItem
@@ -31,11 +30,9 @@ class CharacterViewModel(
     private val _uiState = MutableStateFlow<CharacterUiState>(CharacterUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
-
     init {
         load("")
     }
-
 
     fun load(name: String){
         loadCharacter(name)
@@ -57,22 +54,9 @@ class CharacterViewModel(
         _uiState.update {
             if (it is CharacterUiState.Success) {
                 it.copy(name = name)
-            } else {
-                it
             }
+            else it
         }
         load(name)
     }
-
-
-    internal class Factory(
-        private val getCharacterItemsUseCase: GetCharacterItemsUseCase,
-    ) : ViewModelProvider.NewInstanceFactory() {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T =
-            CharacterViewModel(
-                getCharacterItemsUseCase = getCharacterItemsUseCase,
-            ) as T
-    }
-
 }

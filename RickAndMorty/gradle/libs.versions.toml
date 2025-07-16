@@ -10,6 +10,9 @@ targetSdk = "34"
 agp = "8.1.4"
 kotlin = "2.0.0"
 
+# DI
+koin = "4.0.4"
+
 # core
 core-ktx = "1.13.1"
 kotlinx_immutable = "0.3.8"
@@ -37,6 +40,13 @@ kotlinx-coroutines-test = "1.9.0"
 androidx-test-ext-junit = "1.2.1"
 
 [libraries]
+
+# DI
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
+
 
 # core
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }

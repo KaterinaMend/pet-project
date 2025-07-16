@@ -35,18 +35,4 @@ class DetailsViewModel(
         }
     }
 
-
-    internal class Factory(
-        private val characterItemId: String,
-        private val getSingleCharacterItemUseCase: GetSingleCharacterItemUseCase,
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return DetailsViewModel(
-                getSingleCharacterItemUseCase = getSingleCharacterItemUseCase,
-                characterItemId = characterItemId
-            ) as T
-        }
-    }
-
 }

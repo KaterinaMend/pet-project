@@ -2,17 +2,16 @@ package com.rickandmorty.rickandmortyapp.presentation.features.details.navigatio
 
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-import com.rickandmorty.rickandmortyapp.app.di.DiProvider
 import com.rickandmorty.rickandmortyapp.core.navigation.RickAndMortyDestination
-import com.rickandmorty.rickandmortyapp.domain.usecases.character.GetSingleCharacterItemUseCase
 import com.rickandmorty.rickandmortyapp.presentation.features.details.DetailsScreen
 import com.rickandmorty.rickandmortyapp.presentation.features.details.DetailsViewModel
 import kotlinx.serialization.Serializable
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 
 fun NavHostController.navigateToDetails(characterItemId: String) {
@@ -25,12 +24,8 @@ data class DetailsDestination(val characterItemId: String) : RickAndMortyDestina
 fun NavGraphBuilder.details(onNavigateUp: () -> Unit) {
     composable<DetailsDestination>{
         val characterItemId = it.toRoute<DetailsDestination>().characterItemId
-
-        val viewModel: DetailsViewModel = viewModel(
-            factory = DetailsViewModel.Factory(
-                getSingleCharacterItemUseCase = DiProvider.di.get(GetSingleCharacterItemUseCase::class),
-                characterItemId = characterItemId
-            )
+        val viewModel: DetailsViewModel = koinViewModel<DetailsViewModel>(
+                parameters = { parametersOf(characterItemId) }
         )
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
         DetailsScreen(

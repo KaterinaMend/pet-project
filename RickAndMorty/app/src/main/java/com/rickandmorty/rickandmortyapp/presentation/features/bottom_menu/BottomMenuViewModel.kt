@@ -2,7 +2,6 @@ package com.rickandmorty.rickandmortyapp.presentation.features.bottom_menu
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.rickandmorty.rickandmortyapp.core.navigation.RickAndMortyTopLevelDestination
 import com.rickandmorty.rickandmortyapp.core.navigation.TopDestinationsCollection
@@ -30,32 +29,6 @@ class BottomCharacterViewModel(
 
     init {
         viewModelScope.launch {
-            /*
-            getCartUseCase().collect { itemsInCart ->
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        topLevelDestinations = currentState.topLevelDestinations
-                            .map { destination ->
-                                if (destination is RickAndMortyTopLevelDestinationWithCount) {
-                                    destination.copyWithNewBadge(itemsInCart.size)
-                                } else
-                                    destination
-                            }.toPersistentList()
-                    )
-                }
-            }
-             */
         }
-    }
-
-
-    internal class Factory(
-        private val topLevelDestinationsCollection: TopDestinationsCollection,
-    ) : ViewModelProvider.NewInstanceFactory() {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T =
-            BottomCharacterViewModel(
-                topLevelDestinations = topLevelDestinationsCollection
-            ) as T
     }
 }
