@@ -109,7 +109,7 @@ private fun ColumnScope.DetailsBlock(uiState: DetailsUiState.Success){
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = uiState.characterItem.name!!, style = MaterialTheme.typography.titleSmall,
+                    text = uiState.characterItem.name, style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(

@@ -62,7 +62,7 @@ fun ItemCharacter(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = item.name!!,
+                text = item.name,
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.secondary,
                 textAlign = TextAlign.Center

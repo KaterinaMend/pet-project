@@ -12,7 +12,7 @@ class CharacterMemoryStorage : CharacterStorage {
 
     override fun getByName(name: String) : List<CharacterItemEntity>{
         lateinit var filterCharacters: List<CharacterItemEntity>
-        if (name.isNotEmpty())  filterCharacters = characterItems.filter { it.name!!.startsWith(name, ignoreCase = true) }.toList()
+        if (name.isNotEmpty())  filterCharacters = characterItems.filter { it.name.startsWith(name, ignoreCase = true) }.toList()
         else filterCharacters = characterItems.toList()
         return filterCharacters
     }
