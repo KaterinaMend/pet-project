@@ -20,6 +20,7 @@ sealed interface CharacterUiState {
     data class Success(
         val products: ImmutableList<CharacterItem>,
         val name: String,
+        val searchError: Boolean
     ): CharacterUiState
 }
 
@@ -41,10 +42,14 @@ class CharacterViewModel(
     private fun loadCharacter(name: String){
         viewModelScope.launch {
             val items = getCharacterItemsUseCase(name)
+            var searchError = false
+            if (items.isEmpty()) searchError = true
+
             _uiState.update {_ ->
                 CharacterUiState.Success(
                     products = items.toPersistentList(),
-                    name = name
+                    name = name,
+                    searchError = searchError
                 )
             }
         }

@@ -41,8 +41,7 @@ fun DetailsScreen(uiState: DetailsUiState, onNavigateUp: () -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.primaryContainer)
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.Start
+            .verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.Start
     ) {
         StatusBarInsetsSpacer()
         Spacer(modifier = Modifier.height(space16))
@@ -56,15 +55,15 @@ fun DetailsScreen(uiState: DetailsUiState, onNavigateUp: () -> Unit) {
             )
         }
 
-        when(uiState){
+        when (uiState) {
             is DetailsUiState.Loading -> {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
                 ) {
                     LoadingIndicator()
                 }
             }
+
             is DetailsUiState.Error -> {}
             is DetailsUiState.Success -> {
                 Box(
@@ -74,7 +73,8 @@ fun DetailsScreen(uiState: DetailsUiState, onNavigateUp: () -> Unit) {
                 ) {
                     AsyncImage(
                         modifier = Modifier.fillMaxSize(),
-                        model = uiState.characterItem.image, contentDescription = "uiState.characterItem.name"
+                        model = uiState.characterItem.image,
+                        contentDescription = "uiState.characterItem.name"
                     )
                 }
                 DetailsBlock(uiState = uiState)
@@ -87,15 +87,14 @@ fun DetailsScreen(uiState: DetailsUiState, onNavigateUp: () -> Unit) {
 }
 
 @Composable
-private fun ColumnScope.DetailsBlock(uiState: DetailsUiState.Success){
+private fun ColumnScope.DetailsBlock(uiState: DetailsUiState.Success) {
     Box(
         modifier = Modifier
             .defaultShadow()
             .fillMaxWidth()
             .weight(1f)
             .background(
-                color = MaterialTheme.colorScheme.background,
-                shape = oneCornerRoundedShape
+                color = MaterialTheme.colorScheme.background, shape = oneCornerRoundedShape
             )
     ) {
         Column(
@@ -105,11 +104,11 @@ private fun ColumnScope.DetailsBlock(uiState: DetailsUiState.Success){
         ) {
             Spacer(modifier = Modifier.height(space40))
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = uiState.characterItem.name, style = MaterialTheme.typography.titleSmall,
+                    text = uiState.characterItem.name,
+                    style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Text(
